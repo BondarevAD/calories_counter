@@ -1,9 +1,14 @@
 import 'dart:io';
 
+import 'package:calories_counter/presentation/pages/main_screen/main_screen.dart';
 import 'package:calories_counter/presentation/resources/AppResources.dart';
 import 'package:calories_counter/presentation/widgets/app_button.dart';
 import 'package:calories_counter/presentation/widgets/app_outlined_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/route_manager.dart';
+
+import 'cubit/auth_cubit.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -12,11 +17,11 @@ class AuthPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: _body,
+      body: _body(context),
     );
   }
 
-  Widget get _body {
+  Widget _body(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 8, right: 8),
       child: Column(
@@ -55,9 +60,17 @@ class AuthPage extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          const AppOutlinedButton(
+          AppOutlinedButton(
             text: "Login with phone",
             icon: AppAssetImage.phone,
+            onTap: () async {
+              try {
+                await BlocProvider.of<AuthCubit>(context).signInWithGoogle();
+                if (context.mounted) {
+                  Get.to(MainScreen());
+                }
+              } on Exception {}
+            },
           ),
           SizedBox(
             height: 10,

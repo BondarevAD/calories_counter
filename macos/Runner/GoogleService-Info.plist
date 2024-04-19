@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyAW1hgpakK4KsP0GASvvnGGHMLntwLWrUI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>667697448675</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.caloriesCounter</string>
+	<key>PROJECT_ID</key>
+	<string>calories-counter-8b76c</string>
+	<key>STORAGE_BUCKET</key>
+	<string>calories-counter-8b76c.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:667697448675:ios:a6ad7504a6b663372da7d6</string>
+</dict>
+</plist>

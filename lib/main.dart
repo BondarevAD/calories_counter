@@ -1,9 +1,23 @@
+import 'package:calories_counter/firebase_options.dart';
+import 'package:calories_counter/presentation/pages/auth_page/cubit/auth_cubit.dart';
 import 'package:calories_counter/presentation/pages/splash_screen/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider<AuthCubit>(
+        create: (_) => AuthCubit(),
+      )
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
