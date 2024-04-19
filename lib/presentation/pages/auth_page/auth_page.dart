@@ -1,9 +1,11 @@
 import 'dart:io';
 
+import 'package:calories_counter/presentation/pages/sign_up_page/sign_up_page.dart';
 import 'package:calories_counter/presentation/resources/AppResources.dart';
 import 'package:calories_counter/presentation/widgets/app_button.dart';
 import 'package:calories_counter/presentation/widgets/app_outlined_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -52,14 +54,14 @@ class AuthPage extends StatelessWidget {
                 ),
               ],
             ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           const AppOutlinedButton(
             text: "Login with phone",
             icon: AppAssetImage.phone,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           const Row(
@@ -68,11 +70,12 @@ class AuthPage extends StatelessWidget {
               Text("or"),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          const AppButton(
+          AppButton(
             text: "Create new account",
+            onTap: () => Get.to(const SignUpPage()),
           ),
         ],
       ),
