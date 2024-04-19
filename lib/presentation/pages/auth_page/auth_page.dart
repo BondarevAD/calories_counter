@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:calories_counter/presentation/resources/AppResources.dart';
+import 'package:calories_counter/presentation/widgets/app_button.dart';
 import 'package:calories_counter/presentation/widgets/app_outlined_button.dart';
 import 'package:flutter/material.dart';
 
@@ -51,6 +52,28 @@ class AuthPage extends StatelessWidget {
                 ),
               ],
             ),
+          SizedBox(
+            height: 10,
+          ),
+          const AppOutlinedButton(
+            text: "Login with phone",
+            icon: AppAssetImage.phone,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("or"),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          const AppButton(
+            text: "Create new account",
+          ),
         ],
       ),
     );
