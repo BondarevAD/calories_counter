@@ -25,9 +25,16 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
-        return windows;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for windows - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -40,47 +47,31 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyC3HuF8tAg9Tukp2BwG9JNceiK2AAAh7xw',
-    appId: '1:667697448675:web:79733b50de24e0ef2da7d6',
-    messagingSenderId: '667697448675',
-    projectId: 'calories-counter-8b76c',
-    authDomain: 'calories-counter-8b76c.firebaseapp.com',
-    storageBucket: 'calories-counter-8b76c.appspot.com',
-  );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAvmHRgr0XQQnIf1CrsemuRfn5Xg-dpTU0',
-    appId: '1:667697448675:android:ef334458dee76c2c2da7d6',
-    messagingSenderId: '667697448675',
-    projectId: 'calories-counter-8b76c',
-    storageBucket: 'calories-counter-8b76c.appspot.com',
+    apiKey: 'AIzaSyCrLwWsllRKFDh6Xt3CbNUYDYpXbrxoShE',
+    appId: '1:496950293079:android:d60836c420a43fbc79e912',
+    messagingSenderId: '496950293079',
+    projectId: 'calorie-501cb',
+    storageBucket: 'calorie-501cb.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAW1hgpakK4KsP0GASvvnGGHMLntwLWrUI',
-    appId: '1:667697448675:ios:a6ad7504a6b663372da7d6',
-    messagingSenderId: '667697448675',
-    projectId: 'calories-counter-8b76c',
-    storageBucket: 'calories-counter-8b76c.appspot.com',
+    apiKey: 'AIzaSyDLw2czRgOY_jI4PnwHQbc0Vfd8xvhpA6s',
+    appId: '1:496950293079:ios:1d50660bd9a02afc79e912',
+    messagingSenderId: '496950293079',
+    projectId: 'calorie-501cb',
+    storageBucket: 'calorie-501cb.appspot.com',
     iosBundleId: 'com.example.caloriesCounter',
   );
 
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAW1hgpakK4KsP0GASvvnGGHMLntwLWrUI',
-    appId: '1:667697448675:ios:a6ad7504a6b663372da7d6',
-    messagingSenderId: '667697448675',
-    projectId: 'calories-counter-8b76c',
-    storageBucket: 'calories-counter-8b76c.appspot.com',
-    iosBundleId: 'com.example.caloriesCounter',
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyA60GuZfNtezNHLVbQNk2uRreJGen1r4ak',
+    appId: '1:496950293079:web:08fc6cc54c71373f79e912',
+    messagingSenderId: '496950293079',
+    projectId: 'calorie-501cb',
+    authDomain: 'calorie-501cb.firebaseapp.com',
+    storageBucket: 'calorie-501cb.appspot.com',
   );
 
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyC3HuF8tAg9Tukp2BwG9JNceiK2AAAh7xw',
-    appId: '1:667697448675:web:9fd854b60273201d2da7d6',
-    messagingSenderId: '667697448675',
-    projectId: 'calories-counter-8b76c',
-    authDomain: 'calories-counter-8b76c.firebaseapp.com',
-    storageBucket: 'calories-counter-8b76c.appspot.com',
-  );
 }

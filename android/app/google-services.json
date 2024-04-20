@@ -1,13 +1,16 @@
 {
   "project_info": {
-    "project_number": "667697448675",
-    "project_id": "calories-counter-8b76c",
-    "storage_bucket": "calories-counter-8b76c.appspot.com"
+
+    "project_number": "496950293079",
+    "project_id": "calorie-501cb",
+    "storage_bucket": "calorie-501cb.appspot.com"
+
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:667697448675:android:ef334458dee76c2c2da7d6",
+
+        "mobilesdk_app_id": "1:496950293079:android:d60836c420a43fbc79e912",
         "android_client_info": {
           "package_name": "com.example.calories_counter"
         }
@@ -15,7 +18,9 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAvmHRgr0XQQnIf1CrsemuRfn5Xg-dpTU0"
+
+       
+          "current_key": "AIzaSyCrLwWsllRKFDh6Xt3CbNUYDYpXbrxoShE"
         }
       ],
       "services": {
