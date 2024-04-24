@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:calories_counter/presentation/pages/main_screen/main_screen.dart';
+import 'package:calories_counter/presentation/pages/main/main_page.dart';
 import 'package:calories_counter/presentation/resources/AppResources.dart';
 import 'package:calories_counter/presentation/widgets/app_button.dart';
 import 'package:calories_counter/presentation/widgets/app_outlined_button.dart';
@@ -22,13 +22,12 @@ class AuthPage extends StatelessWidget {
     );
   }
 
-
-  Widget get _body {
-    return const Padding(
+  Widget _body(BuildContext context) {
+    return Padding(
       padding: EdgeInsets.only(left: 8, right: 8),
       child: Column(
         children: [
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
@@ -45,11 +44,19 @@ class AuthPage extends StatelessWidget {
             child: AppOutlinedButton(
               text: "Login with Google",
               icon: AppAssetImage.google,
+              onTap: () async {
+                try {
+                  await BlocProvider.of<AuthCubit>(context).signInWithGoogle();
+                  if (context.mounted) {
+                    Get.off(MainPage());
+                  }
+                } on Exception {}
+              },
             ),
           ),
           if (!kIsWeb)
             if (Platform.isIOS)
-              Column(
+              const Column(
                 children: [
                   SizedBox(
                     height: 10,
@@ -66,14 +73,7 @@ class AuthPage extends StatelessWidget {
           AppOutlinedButton(
             text: "Login with phone",
             icon: AppAssetImage.phone,
-            onTap: () async {
-              try {
-                await BlocProvider.of<AuthCubit>(context).signInWithGoogle();
-                if (context.mounted) {
-                  Get.to(MainScreen());
-                }
-              } on Exception {}
-            },
+            onTap: () async {},
           ),
           SizedBox(
             height: 10,

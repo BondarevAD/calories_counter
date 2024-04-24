@@ -1,13 +1,25 @@
+import 'package:calories_counter/data/data_source/api_datasource.dart';
+import 'package:calories_counter/data/repository_impl/products_repository.dart';
+import 'package:calories_counter/domain/interactors/search_interactor.dart';
+import 'package:calories_counter/domain/repositories/products_repository.dart';
 import 'package:calories_counter/firebase_options.dart';
 import 'package:calories_counter/presentation/pages/auth_page/cubit/auth_cubit.dart';
-import 'package:calories_counter/presentation/pages/splash_screen/splash_screen.dart';
+import 'package:calories_counter/presentation/pages/main/main_page.dart';
+import 'package:calories_counter/presentation/pages/main/tabs/home_body/cubit/home_cubit.dart';
+import 'package:calories_counter/presentation/pages/main/tabs/profile_body/cubit/profile_cubit.dart';
+import 'package:calories_counter/presentation/pages/main/tabs/search_body/cubit/search_cubit.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_frame/flutter_web_frame.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 Future<void> main() async {
+  final apiDataSource = ApiDataSource();
+  final productsRepository = ProductsRepositoryImpl(apiDataSource);
+  final searchInteractor = SearchInteractor(productsRepository);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -15,7 +27,16 @@ Future<void> main() async {
     providers: [
       BlocProvider<AuthCubit>(
         create: (_) => AuthCubit(),
-      )
+      ),
+      BlocProvider<HomeCubit>(
+        create: (_) => HomeCubit(),
+      ),
+      BlocProvider<SearchCubit>(
+        create: (_) => SearchCubit(searchInteractor),
+      ),
+      BlocProvider<ProfileCubit>(
+        create: (_) => ProfileCubit(),
+      ),
     ],
     child: const MyApp(),
   ));
@@ -31,11 +52,12 @@ class MyApp extends StatelessWidget {
       builder: (BuildContext context) {
         return GetMaterialApp(
           title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            colorScheme: const ColorScheme.light(primary: Colors.black),
             useMaterial3: true,
           ),
-          home: const SplashScreen(),
+          home: const MainPage(),
         );
       },
       enabled: kIsWeb,
