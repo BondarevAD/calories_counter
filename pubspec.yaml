@@ -14,8 +14,11 @@ dependencies:
   very_good_analysis: any
   get: ^4.6.6
   firebase_core: ^2.30.0
+  cloud_firestore: any
   firebase_auth:
   flutter_web_frame:
+  flutter_bloc: ^8.1.5
+  http: ^1.2.1
 
 dev_dependencies:
   flutter_test:

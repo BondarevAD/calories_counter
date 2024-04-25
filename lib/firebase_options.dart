@@ -25,6 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
+
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
           'you can reconfigure this by running the FlutterFire CLI again.',
@@ -45,6 +46,7 @@ class DefaultFirebaseOptions {
         );
     }
   }
+
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCrLwWsllRKFDh6Xt3CbNUYDYpXbrxoShE',
