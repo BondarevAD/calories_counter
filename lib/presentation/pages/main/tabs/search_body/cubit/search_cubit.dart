@@ -8,7 +8,15 @@ class SearchCubit extends Cubit<SearchState> {
 
   final SearchInteractor _searchInteractor;
 
-  Future<Products> getProductByName(String name) {
-    return _searchInteractor.getProducts(name);
+  Future<void> getProductByName(String name) async {
+    SearchLoading();
+    try {
+      final products = await _searchInteractor.getProducts(name);
+      final product = products.items.first;
+      emit(SearchFounded(product: product));
+    } catch (e) {
+      print(e.toString());
+      emit(SearchError());
+    }
   }
 }

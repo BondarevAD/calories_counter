@@ -8,8 +8,13 @@ class ApiDataSource {
   static const String baseUrl =
       "https://api.calorieninjas.com/v1/nutrition?query=";
 
+  final Map<String, String> headers = {
+    'X-Api-Key': apiKey,
+  };
+
   Future<ProductsData> fetchProduct(String query) async {
-    final response = await http.get(Uri.parse("{$baseUrl}$query"));
+    final response =
+        await http.get(Uri.parse("$baseUrl$query"), headers: headers);
     if (response.statusCode == 200) {
       return ProductsData.fromJson(
           jsonDecode(response.body) as Map<String, dynamic>);

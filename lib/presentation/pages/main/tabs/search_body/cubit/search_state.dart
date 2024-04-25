@@ -10,4 +10,6 @@ class SearchFounded extends SearchState {
   SearchFounded({required this.product});
 }
 
+class SearchLoading extends SearchState {}
+
 class SearchError extends SearchState {}

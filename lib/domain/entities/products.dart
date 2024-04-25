@@ -18,13 +18,13 @@ class Products {
 class Product {
   String name;
   double calories;
-  int servingSizeG;
+  double servingSizeG;
   double fatTotalG;
-  int fatSaturatedG;
+  double fatSaturatedG;
   double proteinG;
-  int sodiumMg;
-  int potassiumMg;
-  int cholesterolMg;
+  double sodiumMg;
+  double potassiumMg;
+  double cholesterolMg;
   double carbohydratesTotalG;
   double fiberG;
   double sugarG;

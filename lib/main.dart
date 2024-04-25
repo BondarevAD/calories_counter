@@ -1,5 +1,8 @@
 import 'package:calories_counter/data/data_source/api_datasource.dart';
+import 'package:calories_counter/data/data_source/firebase_datasource.dart';
 import 'package:calories_counter/data/repository_impl/products_repository.dart';
+import 'package:calories_counter/data/repository_impl/user_repository_impl.dart';
+import 'package:calories_counter/domain/interactors/profile_interactor.dart';
 import 'package:calories_counter/domain/interactors/search_interactor.dart';
 import 'package:calories_counter/domain/repositories/products_repository.dart';
 import 'package:calories_counter/firebase_options.dart';
@@ -8,6 +11,7 @@ import 'package:calories_counter/presentation/pages/main/main_page.dart';
 import 'package:calories_counter/presentation/pages/main/tabs/home_body/cubit/home_cubit.dart';
 import 'package:calories_counter/presentation/pages/main/tabs/profile_body/cubit/profile_cubit.dart';
 import 'package:calories_counter/presentation/pages/main/tabs/search_body/cubit/search_cubit.dart';
+import 'package:calories_counter/presentation/pages/splash_screen/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/foundation.dart';
@@ -20,6 +24,10 @@ Future<void> main() async {
   final apiDataSource = ApiDataSource();
   final productsRepository = ProductsRepositoryImpl(apiDataSource);
   final searchInteractor = SearchInteractor(productsRepository);
+
+  final firebaseDataSource = FirebaseDataSource();
+  final userRepository = UserRepositoryImpl(firebaseDataSource);
+  final profileInteractor = ProfileInteractor(userRepository);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -35,7 +43,7 @@ Future<void> main() async {
         create: (_) => SearchCubit(searchInteractor),
       ),
       BlocProvider<ProfileCubit>(
-        create: (_) => ProfileCubit(),
+        create: (_) => ProfileCubit(profileInteractor)..getUser(),
       ),
     ],
     child: const MyApp(),
@@ -57,7 +65,7 @@ class MyApp extends StatelessWidget {
             colorScheme: const ColorScheme.light(primary: Colors.black),
             useMaterial3: true,
           ),
-          home: const MainPage(),
+          home: const SplashScreen(),
         );
       },
       enabled: kIsWeb,
