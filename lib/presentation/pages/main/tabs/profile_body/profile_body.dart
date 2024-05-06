@@ -16,7 +16,16 @@ class ProfileBody extends StatelessWidget {
           );
         }
         if (state is ProfileLoaded) {
-          return Text(state.user.email + state.user.id);
+          return Column(
+            children: [
+              Text(
+                  "Name: ${state.user.name.substring(1, state.user.name.length - 1)}"),
+              Text("Email: ${state.user.email}"),
+              Text("My height: ${state.user.height}"),
+              Text("My weight: ${state.user.weight}"),
+              Text("My age: ${state.user.age}"),
+            ],
+          );
         }
         if (state is ProfileError) {
           return Text("Error");

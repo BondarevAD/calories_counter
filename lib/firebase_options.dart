@@ -47,7 +47,6 @@ class DefaultFirebaseOptions {
     }
   }
 
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCrLwWsllRKFDh6Xt3CbNUYDYpXbrxoShE',
     appId: '1:496950293079:android:d60836c420a43fbc79e912',
@@ -62,6 +61,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '496950293079',
     projectId: 'calorie-501cb',
     storageBucket: 'calorie-501cb.appspot.com',
+    androidClientId: '496950293079-gi2lqmmgk3km3trm8snt1oh3cdugcrg0.apps.googleusercontent.com',
+    iosClientId: '496950293079-0fb90tutvjg2e11biv1f91h4q8p4avi8.apps.googleusercontent.com',
     iosBundleId: 'com.example.caloriesCounter',
   );
 

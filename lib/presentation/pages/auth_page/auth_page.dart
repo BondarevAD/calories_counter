@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:calories_counter/presentation/pages/auth_page/widgets/login_page.dart';
+import 'package:calories_counter/presentation/pages/auth_page/widgets/new_account_page.dart';
 import 'package:calories_counter/presentation/pages/main/main_page.dart';
 import 'package:calories_counter/presentation/resources/AppResources.dart';
 import 'package:calories_counter/presentation/widgets/app_button.dart';
@@ -50,7 +52,9 @@ class AuthPage extends StatelessWidget {
                   if (context.mounted) {
                     Get.off(MainPage());
                   }
-                } on Exception {}
+                } catch (e) {
+                  print(e.toString());
+                }
               },
             ),
           ),
@@ -73,10 +77,16 @@ class AuthPage extends StatelessWidget {
           AppOutlinedButton(
             text: "Login with phone",
             icon: AppAssetImage.phone,
-            onTap: () async {},
+            onTap: () async => await BlocProvider.of<AuthCubit>(context)
+                .loginWithPhoneNumber("2"),
           ),
           SizedBox(
             height: 10,
+          ),
+          AppOutlinedButton(
+            text: "Login with Email",
+            icon: AppAssetImage.email,
+            onTap: () => Get.to(LoginPage()),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -89,6 +99,9 @@ class AuthPage extends StatelessWidget {
           ),
           AppButton(
             text: "Create new account",
+            onTap: () => Get.to(
+              CreateAccountPage(),
+            ),
           ),
         ],
       ),

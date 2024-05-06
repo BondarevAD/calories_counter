@@ -13,10 +13,20 @@ class SearchCubit extends Cubit<SearchState> {
     try {
       final products = await _searchInteractor.getProducts(name);
       final product = products.items.first;
-      emit(SearchFounded(product: product));
+      final image = await _searchInteractor.getImageByName(product.name);
+      emit(SearchFounded(product: product, image.hits.first.largeImageUrl));
     } catch (e) {
       print(e.toString());
       emit(SearchError());
+    }
+  }
+
+  Future<void> addProduct(Product product) async {
+    final user = await _searchInteractor.getUser();
+    try {
+      _searchInteractor.addProduct(product, user);
+    } catch (e) {
+      print(e.toString());
     }
   }
 }

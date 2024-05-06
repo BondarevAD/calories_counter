@@ -2,8 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>496950293079-0fb90tutvjg2e11biv1f91h4q8p4avi8.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.496950293079-0fb90tutvjg2e11biv1f91h4q8p4avi8</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>496950293079-gi2lqmmgk3km3trm8snt1oh3cdugcrg0.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-
 	<string>AIzaSyDLw2czRgOY_jI4PnwHQbc0Vfd8xvhpA6s</string>
 	<key>GCM_SENDER_ID</key>
 	<string>496950293079</string>
@@ -12,7 +17,6 @@
 	<key>BUNDLE_ID</key>
 	<string>com.example.caloriesCounter</string>
 	<key>PROJECT_ID</key>
-
 	<string>calorie-501cb</string>
 	<key>STORAGE_BUCKET</key>
 	<string>calorie-501cb.appspot.com</string>
@@ -27,7 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-
 	<string>1:496950293079:ios:1d50660bd9a02afc79e912</string>
 </dict>
 </plist>

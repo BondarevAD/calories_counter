@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 ProductsData productsDataFromJson(String str) =>
     ProductsData.fromJson(json.decode(str));
 
@@ -80,4 +82,25 @@ class ProductData {
         "fiber_g": fiberG,
         "sugar_g": sugarG,
       };
+
+  factory ProductData.fromFirestore(
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
+    SnapshotOptions? options,
+  ) {
+    final data = snapshot.data();
+    return ProductData(
+      name: data?["name"],
+      calories: data?["calories"],
+      servingSizeG: data?["serving_size_g"],
+      fatTotalG: data?["fat_total_g"],
+      fatSaturatedG: data?["fat_saturated_g"],
+      proteinG: data?["protein_g"],
+      sodiumMg: data?["sodium_mg"],
+      potassiumMg: data?["potassium_mg"],
+      cholesterolMg: data?["cholesterol_mg"],
+      carbohydratesTotalG: data?["carbohydrates_total_g"],
+      fiberG: data?["fiber_g"],
+      sugarG: data?["sugar_g"],
+    );
+  }
 }

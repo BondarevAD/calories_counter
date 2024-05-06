@@ -17,4 +17,15 @@ extension MainTabsExt on MainTabs {
         return Icons.person;
     }
   }
+
+  String get title {
+    switch (this) {
+      case MainTabs.home:
+        return "";
+      case MainTabs.search:
+        return "Find products";
+      case MainTabs.profile:
+        return "Profile";
+    }
+  }
 }

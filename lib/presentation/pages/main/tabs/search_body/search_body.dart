@@ -1,5 +1,6 @@
 import 'package:calories_counter/presentation/pages/main/tabs/search_body/cubit/search_cubit.dart';
 import 'package:calories_counter/presentation/pages/main/tabs/search_body/cubit/search_state.dart';
+import 'package:calories_counter/presentation/pages/main/tabs/search_body/widgets/product_card.dart';
 import 'package:calories_counter/presentation/widgets/search_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,20 @@ class SearchBody extends StatelessWidget {
           ),
           BlocBuilder<SearchCubit, SearchState>(builder: (contex, state) {
             if (state is SearchFounded) {
-              return Text(state.product.name);
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ProductCard(
+                    product: state.product,
+                    imageUrl: state.imageUrl,
+                  ),
+                  TextButton(
+                    onPressed: () => BlocProvider.of<SearchCubit>(context)
+                        .addProduct(state.product),
+                    child: Text("Add to my account"),
+                  ),
+                ],
+              );
             } else if (state is SearchError) {
               return Text("error");
             } else if (state is SearchLoading) {

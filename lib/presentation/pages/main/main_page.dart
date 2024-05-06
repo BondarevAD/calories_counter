@@ -26,6 +26,7 @@ class _MainPageState extends State<MainPage> {
 
   AppBar get _appBar {
     return AppBar(
+      title: Text(tab.title),
       actions: [
         IconButton(
           onPressed: () {},

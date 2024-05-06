@@ -1,7 +1,11 @@
 import 'package:calories_counter/data/data_source/api_datasource.dart';
 import 'package:calories_counter/data/data_source/firebase_datasource.dart';
+import 'package:calories_counter/data/data_source/image_api_datasource.dart';
+import 'package:calories_counter/data/repository_impl/auth_repository.dart';
 import 'package:calories_counter/data/repository_impl/products_repository.dart';
 import 'package:calories_counter/data/repository_impl/user_repository_impl.dart';
+import 'package:calories_counter/domain/interactors/auth_interactor.dart';
+import 'package:calories_counter/domain/interactors/home_interactor.dart';
 import 'package:calories_counter/domain/interactors/profile_interactor.dart';
 import 'package:calories_counter/domain/interactors/search_interactor.dart';
 import 'package:calories_counter/domain/repositories/products_repository.dart';
@@ -13,7 +17,6 @@ import 'package:calories_counter/presentation/pages/main/tabs/profile_body/cubit
 import 'package:calories_counter/presentation/pages/main/tabs/search_body/cubit/search_cubit.dart';
 import 'package:calories_counter/presentation/pages/splash_screen/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,23 +24,31 @@ import 'package:flutter_web_frame/flutter_web_frame.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   final apiDataSource = ApiDataSource();
-  final productsRepository = ProductsRepositoryImpl(apiDataSource);
-  final searchInteractor = SearchInteractor(productsRepository);
+  final imageApiDataSource = ImageApiDataSource();
 
   final firebaseDataSource = FirebaseDataSource();
+
+  final productsRepository = ProductsRepositoryImpl(
+      apiDataSource, firebaseDataSource, imageApiDataSource);
   final userRepository = UserRepositoryImpl(firebaseDataSource);
+  final authRepository = AuthRepositoryImpl(firebaseDataSource);
+
+  final searchInteractor = SearchInteractor(productsRepository, userRepository);
   final profileInteractor = ProfileInteractor(userRepository);
+  final homeInteractor = HomeInteractor(userRepository, productsRepository);
+  final authInteractor = AuthInteractor(authRepository, userRepository);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider<AuthCubit>(
-        create: (_) => AuthCubit(),
+        create: (_) => AuthCubit(authInteractor),
       ),
       BlocProvider<HomeCubit>(
-        create: (_) => HomeCubit(),
+        create: (_) => HomeCubit(homeInteractor)..getProductsByUser(),
       ),
       BlocProvider<SearchCubit>(
         create: (_) => SearchCubit(searchInteractor),
@@ -62,8 +73,13 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
+            fontFamily: 'AppFont',
             colorScheme: const ColorScheme.light(primary: Colors.black),
             useMaterial3: true,
+            primaryColor: Colors.black,
+            navigationBarTheme: NavigationBarThemeData(
+              indicatorColor: Colors.black,
+            ),
           ),
           home: const SplashScreen(),
         );
